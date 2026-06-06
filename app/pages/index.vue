@@ -214,9 +214,10 @@ import type { Product } from "~/types";
 import { useCustomToast } from "../../composables/useToast";
 
 useSeoMeta({
-  title: 'SocksCommerce — Premium Socks',
-  description: 'Discover premium socks for every occasion. Comfort meets style at SocksCommerce.',
-})
+  title: "SocksCommerce — Premium Socks",
+  description:
+    "Discover premium socks for every occasion. Comfort meets style at SocksCommerce.",
+});
 
 const isLoading = ref(true);
 const featuredProducts = ref<Product[]>([]);
@@ -226,7 +227,7 @@ const selectedColor = ref("");
 const quantity = ref(1);
 
 const cartStore = useCartStore();
-const { show } = useCustomToast()
+const { show } = useCustomToast();
 
 onMounted(async () => {
   try {
@@ -257,6 +258,6 @@ function confirmAddToCart() {
     selectedColor.value,
   );
   selectedProduct.value = null;
-  show('Added to cart', { type: 'success' })
+  show("Added to cart", { type: "success" });
 }
 </script>

@@ -223,19 +223,25 @@
 
 <script setup lang="ts">
 import type { Product } from "~/types";
-import { products } from "~/server/db/products";
-import { useCustomToast } from "../../composables/useToast";
+import { products } from "../../../data/products";
+import { useCustomToast } from "../../../composables/useToast";
 
 const route = useRoute();
 const cartStore = useCartStore();
 
-const title = computed(() => (product.value ? `${product.value.name} — SocksCommerce` : 'Product — SocksCommerce'))
-const description = computed(() => (product.value ? product.value.description : 'Product details'))
+const title = computed(() =>
+  product.value
+    ? `${product.value.name} — SocksCommerce`
+    : "Product — SocksCommerce",
+);
+const description = computed(() =>
+  product.value ? product.value.description : "Product details",
+);
 useSeoMeta({
   title,
   description,
-})
-const { show } = useCustomToast()
+});
+const { show } = useCustomToast();
 
 const isLoading = ref(true);
 const product = ref<Product | null>(null);
@@ -282,7 +288,7 @@ function addToCart() {
   );
   // Reset form or show success message
   quantity.value = 1;
-  show('Added to cart', { type: 'success' })
+  show("Added to cart", { type: "success" });
 }
 
 function addRelatedToCart(relatedProduct: Product) {

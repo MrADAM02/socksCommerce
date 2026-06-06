@@ -1,4 +1,4 @@
-import { getProductBySlug } from "~/server/db/products";
+import { getProductBySlug } from "../../../data/products";
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, "slug");

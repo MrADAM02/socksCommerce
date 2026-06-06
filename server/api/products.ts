@@ -1,8 +1,4 @@
-import {
-  products,
-  getProductBySlug,
-  filterProducts,
-} from "~/server/db/products";
+import { filterProducts } from "../../data/products";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
