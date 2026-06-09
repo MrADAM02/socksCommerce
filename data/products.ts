@@ -9,10 +9,10 @@ export const products: Product[] = [
     description:
       "Comfortable and breathable cotton socks perfect for everyday wear.",
     image:
-      "https://images.unsplash.com/photo-1598157816617-1b9bfe22e49f?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1598157816617-1b9bfe22e49f?w=500&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1587427014950-e477dd90f9c4?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&h=600&fit=crop",
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["White", "Black", "Gray", "Navy"],
@@ -26,11 +26,11 @@ export const products: Product[] = [
     slug: "wool-hiking-socks",
     price: 18.99,
     description:
-      "Durable wool socks designed for outdoor adventures and hiking.",
+      "Durable wool socks designed for outdoor adventures and hiking trails.",
     image:
-      "https://images.unsplash.com/photo-1595348046389-54ace5c1d0c5?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1595348046389-54ace5c1d0c5?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=600&h=600&fit=crop",
     ],
     sizes: ["S", "M", "L", "XL"],
     colors: ["Brown", "Green", "Gray", "Black"],
@@ -43,11 +43,11 @@ export const products: Product[] = [
     name: "Athletic Performance Socks",
     slug: "athletic-performance-socks",
     price: 16.99,
-    description: "Moisture-wicking socks for sports and gym activities.",
+    description: "Moisture-wicking composite fibers optimized for sports and high-intensity gym activities.",
     image:
-      "https://images.unsplash.com/photo-1577222020803-bb0ff6d8e21a?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1577222020803-bb0ff6d8e21a?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=600&h=600&fit=crop",
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["White", "Black", "Blue", "Red"],
@@ -60,11 +60,11 @@ export const products: Product[] = [
     name: "Cozy Thermal Socks",
     slug: "cozy-thermal-socks",
     price: 14.99,
-    description: "Insulated socks to keep your feet warm during cold weather.",
+    description: "Heavyweight insulated weave to keep your feet warm during cold winter weather.",
     image:
-      "https://images.unsplash.com/photo-1614707267537-b85fab00c77b?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1614707267537-b85fab00c77b?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&h=600&fit=crop",
     ],
     sizes: ["S", "M", "L", "XL"],
     colors: ["Maroon", "Navy", "Black", "Cream"],
@@ -74,14 +74,14 @@ export const products: Product[] = [
   },
   {
     id: "5",
-    name: "Bamboo Eco Socks",
-    slug: "bamboo-eco-socks",
+    name: "Retro Patterned Socks",
+    slug: "retro-patterned-socks",
     price: 13.99,
-    description: "Sustainable bamboo socks that are eco-friendly and soft.",
+    description: "Vibrant, geometric patterns made with eco-friendly blends for a striking pop of color.",
     image:
-      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=600&h=600&fit=crop",
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["Natural", "Black", "Gray", "Sage"],
@@ -91,14 +91,14 @@ export const products: Product[] = [
   },
   {
     id: "6",
-    name: "Premium Silk Socks",
-    slug: "premium-silk-socks",
+    name: "Premium Luxury Dress Socks",
+    slug: "premium-luxury-dress",
     price: 24.99,
-    description: "Luxurious silk socks for a touch of elegance and comfort.",
+    description: "Finely woven material providing a sleek sheen and comfortable fit for formal occasions.",
     image:
-      "https://images.unsplash.com/photo-1540268549336-e6e99c3679fe?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1611106211090-8f3c79ee8552?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1540268549336-e6e99c3679fe?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1611106211090-8f3c79ee8552?w=600&h=600&fit=crop",
     ],
     sizes: ["S", "M", "L", "XL"],
     colors: ["Silver", "Gold", "Black", "White"],
