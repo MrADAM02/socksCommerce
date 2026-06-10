@@ -1,4 +1,4 @@
-import type { Product } from "~/types";
+import type { Product } from "../app/types";
 
 export const products: Product[] = [
   {
@@ -43,7 +43,8 @@ export const products: Product[] = [
     name: "Athletic Performance Socks",
     slug: "athletic-performance-socks",
     price: 16.99,
-    description: "Moisture-wicking composite fibers optimized for sports and high-intensity gym activities.",
+    description:
+      "Moisture-wicking composite fibers optimized for sports and high-intensity gym activities.",
     image:
       "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=600&h=600&fit=crop",
     images: [
@@ -60,7 +61,8 @@ export const products: Product[] = [
     name: "Cozy Thermal Socks",
     slug: "cozy-thermal-socks",
     price: 14.99,
-    description: "Heavyweight insulated weave to keep your feet warm during cold winter weather.",
+    description:
+      "Heavyweight insulated weave to keep your feet warm during cold winter weather.",
     image:
       "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&h=600&fit=crop",
     images: [
@@ -77,7 +79,8 @@ export const products: Product[] = [
     name: "Retro Patterned Socks",
     slug: "retro-patterned-socks",
     price: 13.99,
-    description: "Vibrant, geometric patterns made with eco-friendly blends for a striking pop of color.",
+    description:
+      "Vibrant, geometric patterns made with eco-friendly blends for a striking pop of color.",
     image:
       "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=600&h=600&fit=crop",
     images: [
@@ -94,7 +97,8 @@ export const products: Product[] = [
     name: "Premium Luxury Dress Socks",
     slug: "premium-luxury-dress",
     price: 24.99,
-    description: "Finely woven material providing a sleek sheen and comfortable fit for formal occasions.",
+    description:
+      "Finely woven material providing a sleek sheen and comfortable fit for formal occasions.",
     image:
       "https://images.unsplash.com/photo-1611106211090-8f3c79ee8552?w=600&h=600&fit=crop",
     images: [
