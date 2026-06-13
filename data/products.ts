@@ -28,9 +28,11 @@ export const products: Product[] = [
     description:
       "Durable wool socks designed for outdoor adventures and hiking trails.",
     image:
-      "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1460353581641-c60327a6e09f?w=600&h=600&fit=crop",
     ],
     sizes: ["S", "M", "L", "XL"],
     colors: ["Brown", "Green", "Gray", "Black"],
@@ -46,9 +48,12 @@ export const products: Product[] = [
     description:
       "Moisture-wicking composite fibers optimized for sports and high-intensity gym activities.",
     image:
-      "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1460353581641-c60327a6e09f?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1544367567-0d6fcffe7f1f?w=600&h=600&fit=crop",
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["White", "Black", "Blue", "Red"],
@@ -64,9 +69,11 @@ export const products: Product[] = [
     description:
       "Heavyweight insulated weave to keep your feet warm during cold winter weather.",
     image:
-      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1460353581641-c60327a6e09f?w=600&h=600&fit=crop",
     ],
     sizes: ["S", "M", "L", "XL"],
     colors: ["Maroon", "Navy", "Black", "Cream"],
@@ -82,9 +89,11 @@ export const products: Product[] = [
     description:
       "Vibrant, geometric patterns made with eco-friendly blends for a striking pop of color.",
     image:
-      "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1544367567-0d6fcffe7f1f?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1544367567-0d6fcffe7f1f?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1460353581641-c60327a6e09f?w=600&h=600&fit=crop",
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["Natural", "Black", "Gray", "Sage"],
@@ -100,9 +109,11 @@ export const products: Product[] = [
     description:
       "Finely woven material providing a sleek sheen and comfortable fit for formal occasions.",
     image:
-      "https://images.unsplash.com/photo-1611106211090-8f3c79ee8552?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1460353581641-c60327a6e09f?w=600&h=600&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1611106211090-8f3c79ee8552?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1460353581641-c60327a6e09f?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
     ],
     sizes: ["S", "M", "L", "XL"],
     colors: ["Silver", "Gold", "Black", "White"],
