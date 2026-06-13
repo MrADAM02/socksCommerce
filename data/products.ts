@@ -9,7 +9,7 @@ export const products: Product[] = [
     description:
       "Comfortable and breathable cotton socks perfect for everyday wear.",
     image:
-      "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=600&h=600&fit=crop",
+      "https://plus.unsplash.com/premium_photo-1727286320353-815a792ca2da?w=600&h=600&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=600&h=600&fit=crop",
       "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&h=600&fit=crop",
@@ -28,7 +28,7 @@ export const products: Product[] = [
     description:
       "Durable wool socks designed for outdoor adventures and hiking trails.",
     image:
-      "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1733744237087-603787681bc5?w=600&h=600&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
@@ -48,7 +48,7 @@ export const products: Product[] = [
     description:
       "Moisture-wicking composite fibers optimized for sports and high-intensity gym activities.",
     image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1640025867572-f6b3a8410c81?w=600&h=600&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
       "https://images.unsplash.com/photo-1460353581641-c60327a6e09f?w=600&h=600&fit=crop",
@@ -69,7 +69,7 @@ export const products: Product[] = [
     description:
       "Heavyweight insulated weave to keep your feet warm during cold winter weather.",
     image:
-      "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=600&h=600&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1556821552-5f63b1c00533?w=600&h=600&fit=crop",
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
@@ -89,7 +89,7 @@ export const products: Product[] = [
     description:
       "Vibrant, geometric patterns made with eco-friendly blends for a striking pop of color.",
     image:
-      "https://images.unsplash.com/photo-1544367567-0d6fcffe7f1f?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1562015121-26e207a38da3?w=600&h=600&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1544367567-0d6fcffe7f1f?w=600&h=600&fit=crop",
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
