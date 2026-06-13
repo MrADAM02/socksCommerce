@@ -46,32 +46,39 @@
               </div>
             </div>
 
-            <!-- Price Filter -->
+            <!-- Price Filter — dual bound with validation -->
             <div class="mb-6">
               <h3 class="font-semibold text-gray-900 mb-3">Price Range</h3>
+              <div
+                class="flex items-center justify-between text-sm font-medium text-gray-700 mb-3"
+              >
+                <span>${{ minPrice }}</span>
+                <span>–</span>
+                <span>${{ maxPrice }}</span>
+              </div>
               <div class="space-y-3">
                 <div>
-                  <label class="text-sm text-gray-600 mb-1 block"
-                    >Min: ${{ minPrice }}</label
+                  <label class="text-xs text-gray-500 mb-1 block"
+                    >Min price</label
                   >
                   <input
                     v-model.number="minPrice"
                     type="range"
                     min="0"
-                    max="100"
-                    class="w-full"
+                    :max="maxPrice - 1"
+                    class="w-full accent-blue-600"
                   />
                 </div>
                 <div>
-                  <label class="text-sm text-gray-600 mb-1 block"
-                    >Max: ${{ maxPrice }}</label
+                  <label class="text-xs text-gray-500 mb-1 block"
+                    >Max price</label
                   >
                   <input
                     v-model.number="maxPrice"
                     type="range"
-                    min="0"
+                    :min="minPrice + 1"
                     max="100"
-                    class="w-full"
+                    class="w-full accent-blue-600"
                   />
                 </div>
               </div>
@@ -129,6 +136,71 @@
 
         <!-- Products Grid -->
         <div class="md:col-span-3">
+          <!-- Toolbar: sort + product count -->
+          <div class="flex items-center justify-between mb-4 gap-4 flex-wrap">
+            <!-- Product count -->
+            <p class="text-sm text-gray-600">
+              <template v-if="isLoading">Loading products…</template>
+              <template v-else>
+                Showing
+                <span class="font-semibold text-gray-900">{{
+                  filteredProducts.length
+                }}</span>
+                of
+                <span class="font-semibold text-gray-900">{{
+                  allProducts.length
+                }}</span>
+                products
+              </template>
+            </p>
+
+            <!-- Sort dropdown -->
+            <div class="flex items-center gap-2">
+              <label for="sort" class="text-sm text-gray-600 whitespace-nowrap"
+                >Sort by</label
+              >
+              <select
+                id="sort"
+                v-model="sortBy"
+                class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="default">Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+                <option value="name">Name A–Z</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Active filter tags -->
+          <div
+            v-if="activeFilterTags.length > 0"
+            class="flex flex-wrap gap-2 mb-4"
+          >
+            <span
+              v-for="tag in activeFilterTags"
+              :key="tag.key + tag.value"
+              class="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-200 text-blue-700 text-sm rounded-full"
+            >
+              {{ tag.label }}
+              <button
+                @click="removeFilter(tag)"
+                class="hover:text-blue-900 focus:outline-none leading-none"
+                :aria-label="`Remove filter: ${tag.label}`"
+              >
+                ✕
+              </button>
+            </span>
+            <button
+              @click="resetFilters"
+              class="text-sm text-gray-500 hover:text-gray-700 underline ml-1"
+            >
+              Clear all
+            </button>
+          </div>
+
+          <!-- Skeleton loader -->
           <div
             v-if="isLoading"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -140,18 +212,35 @@
             </div>
           </div>
 
+          <!-- Product grid -->
           <div
-            v-else-if="filteredProducts.length > 0"
+            v-else-if="sortedProducts.length > 0"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            <ProductCard
-              v-for="product in filteredProducts"
+            <div
+              v-for="product in sortedProducts"
               :key="product.id"
-              :product="product"
-              @add-to-cart="addToCart(product)"
-            />
+              class="relative"
+            >
+              <!-- Out of stock badge -->
+              <div
+                v-if="!product.inStock"
+                class="absolute top-3 left-3 z-10 px-2 py-1 bg-gray-800 text-white text-xs font-semibold rounded"
+              >
+                Out of Stock
+              </div>
+
+              <!-- Dim card when out of stock -->
+              <div :class="{ 'opacity-60': !product.inStock }">
+                <ProductCard
+                  :product="product"
+                  @add-to-cart="addToCart(product)"
+                />
+              </div>
+            </div>
           </div>
 
+          <!-- Empty state -->
           <div v-else class="text-center py-12">
             <p class="text-xl text-gray-600 mb-4">
               No products found matching your filters.
@@ -268,13 +357,15 @@ import { useCustomToast } from "../../composables/useToast";
 
 const route = useRoute();
 useSeoMeta({
-  title: 'Products — SocksCommerce',
-  description: 'Browse our complete collection of premium socks. Filter by size, color, and price.',
-})
+  title: "Products — SocksCommerce",
+  description:
+    "Browse our complete collection of premium socks. Filter by size, color, and price.",
+});
 const router = useRouter();
 const cartStore = useCartStore();
-const { show } = useCustomToast()
+const { show } = useCustomToast();
 
+// ── State ─────────────────────────────────────────────────────────────────────
 const isLoading = ref(true);
 const allProducts = ref<Product[]>([]);
 
@@ -283,12 +374,14 @@ const minPrice = ref(0);
 const maxPrice = ref(100);
 const selectedSizes = ref<string[]>([]);
 const selectedColors = ref<string[]>([]);
+const sortBy = ref("default");
 
 const selectedProduct = ref<Product | null>(null);
 const selectedSize = ref("");
 const selectedColor = ref("");
 const quantity = ref(1);
 
+// ── Static options ─────────────────────────────────────────────────────────────
 const categories = [
   "casual",
   "sports",
@@ -315,8 +408,9 @@ const colors = [
   "Gold",
 ];
 
-const filteredProducts = computed(() => {
-  return allProducts.value.filter((product) => {
+// ── Filtered products ──────────────────────────────────────────────────────────
+const filteredProducts = computed(() =>
+  allProducts.value.filter((product) => {
     if (selectedCategory.value && product.category !== selectedCategory.value)
       return false;
     if (product.price < minPrice.value || product.price > maxPrice.value)
@@ -332,15 +426,92 @@ const filteredProducts = computed(() => {
     )
       return false;
     return true;
-  });
+  }),
+);
+
+// ── Sorted products ────────────────────────────────────────────────────────────
+const sortedProducts = computed(() => {
+  const list = [...filteredProducts.value];
+  switch (sortBy.value) {
+    case "price-asc":
+      return list.sort((a, b) => a.price - b.price);
+    case "price-desc":
+      return list.sort((a, b) => b.price - a.price);
+    case "rating":
+      return list.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+    case "name":
+      return list.sort((a, b) => a.name.localeCompare(b.name));
+    default:
+      return list;
+  }
 });
 
+// ── Active filter tags ─────────────────────────────────────────────────────────
+type FilterTag = { key: string; value: string; label: string };
+
+const activeFilterTags = computed<FilterTag[]>(() => {
+  const tags: FilterTag[] = [];
+
+  if (selectedCategory.value)
+    tags.push({
+      key: "category",
+      value: selectedCategory.value,
+      label: `Category: ${selectedCategory.value}`,
+    });
+
+  if (minPrice.value > 0)
+    tags.push({
+      key: "minPrice",
+      value: String(minPrice.value),
+      label: `Min $${minPrice.value}`,
+    });
+
+  if (maxPrice.value < 100)
+    tags.push({
+      key: "maxPrice",
+      value: String(maxPrice.value),
+      label: `Max $${maxPrice.value}`,
+    });
+
+  selectedSizes.value.forEach((s) =>
+    tags.push({ key: "size", value: s, label: `Size: ${s}` }),
+  );
+
+  selectedColors.value.forEach((c) =>
+    tags.push({ key: "color", value: c, label: `Color: ${c}` }),
+  );
+
+  return tags;
+});
+
+function removeFilter(tag: FilterTag) {
+  switch (tag.key) {
+    case "category":
+      selectedCategory.value = "";
+      break;
+    case "minPrice":
+      minPrice.value = 0;
+      break;
+    case "maxPrice":
+      maxPrice.value = 100;
+      break;
+    case "size":
+      selectedSizes.value = selectedSizes.value.filter((s) => s !== tag.value);
+      break;
+    case "color":
+      selectedColors.value = selectedColors.value.filter(
+        (c) => c !== tag.value,
+      );
+      break;
+  }
+}
+
+// ── Lifecycle ──────────────────────────────────────────────────────────────────
 onMounted(async () => {
   try {
     const data = await $fetch<Product[]>("/api/products");
     allProducts.value = data;
 
-    // Check URL params for initial filters
     if (route.query.category) {
       selectedCategory.value = route.query.category as string;
     }
@@ -351,6 +522,7 @@ onMounted(async () => {
   }
 });
 
+// ── Actions ────────────────────────────────────────────────────────────────────
 function resetFilters() {
   selectedCategory.value = "";
   minPrice.value = 0;
@@ -360,6 +532,7 @@ function resetFilters() {
 }
 
 function addToCart(product: Product) {
+  if (!product.inStock) return;
   selectedProduct.value = product;
   selectedSize.value = product.sizes[0] || "";
   selectedColor.value = product.colors[0] || "";
@@ -367,9 +540,8 @@ function addToCart(product: Product) {
 }
 
 function confirmAddToCart() {
-  if (!selectedProduct.value || !selectedSize.value || !selectedColor.value) {
+  if (!selectedProduct.value || !selectedSize.value || !selectedColor.value)
     return;
-  }
   cartStore.addToCart(
     selectedProduct.value,
     quantity.value,
@@ -377,6 +549,6 @@ function confirmAddToCart() {
     selectedColor.value,
   );
   selectedProduct.value = null;
-  show('Added to cart', { type: 'success' })
+  show("Added to cart", { type: "success" });
 }
 </script>
