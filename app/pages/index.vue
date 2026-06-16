@@ -2,7 +2,7 @@
   <div class="dark:bg-gray-900">
     <!-- ── Hero ──────────────────────────────────────────────────────────── -->
     <section
-      class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white"
+      class="relative overflow-hidden bg-linear-to-br from-blue-600 via-blue-700 to-blue-900 text-white"
     >
       <!-- Subtle pattern overlay -->
       <div

@@ -353,7 +353,7 @@
 
 <script setup lang="ts">
 import type { Product } from "~/types";
-import { useCustomToast } from "../../composables/useToast";
+import { useCustomToast } from "../../../composables/useToast";
 
 const route = useRoute();
 useSeoMeta({
