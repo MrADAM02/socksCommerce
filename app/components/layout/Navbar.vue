@@ -65,13 +65,7 @@
           ></div>
 
           <!-- Theme Toggle -->
-          <button
-            @click="toggleTheme()"
-            class="inline-flex items-center justify-center w-9 h-9 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-            :title="theme === 'dark' ? 'Switch to light' : 'Switch to dark'"
-          >
-            <span class="text-base">{{ theme === "dark" ? "🌙" : "☀️" }}</span>
-          </button>
+          <ThemeToggle />
 
           <!-- Cart -->
           <button

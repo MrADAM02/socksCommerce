@@ -1,28 +1,29 @@
-export function useTheme() {
-  const theme = useState<string>("theme", () => "light");
+type Theme = "light" | "dark";
 
-  function applyTheme(value: string) {
-    if (process.client) {
-      const html = document.documentElement;
-      if (value === "dark") html.classList.add("dark");
-      else html.classList.remove("dark");
-      localStorage.setItem("theme", value);
-    }
+const STORAGE_KEY = "theme";
+
+export function useTheme() {
+  // SSR-safe shared state — actual value gets corrected on client via plugin
+  const theme = useState<Theme>("theme", () => "light");
+
+  function applyTheme(value: Theme) {
     theme.value = value;
+
+    if (import.meta.client) {
+      const html = document.documentElement;
+      html.classList.toggle("dark", value === "dark");
+      html.style.colorScheme = value;
+      localStorage.setItem(STORAGE_KEY, value);
+    }
   }
 
   function toggleTheme() {
     applyTheme(theme.value === "dark" ? "light" : "dark");
   }
 
-  // Initialize from localStorage on client
-  if (process.client) {
-    const stored = localStorage.getItem("theme");
-    if (stored) {
-      theme.value = stored;
-      applyTheme(stored);
-    }
+  function setTheme(value: Theme) {
+    applyTheme(value);
   }
 
-  return { theme, applyTheme, toggleTheme };
+  return { theme, applyTheme, toggleTheme, setTheme };
 }
