@@ -4,7 +4,7 @@
     <Transition name="fade">
       <div
         v-if="cartStore.isOpen"
-        class="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
+        class="fixed inset-0 bg-gray-900/30 backdrop-blur-[2px] z-40 transition-opacity"
         @click="cartStore.closeDrawer()"
       />
     </Transition>
@@ -13,18 +13,27 @@
     <Transition name="slide">
       <div
         v-if="cartStore.isOpen"
-        class="fixed top-0 right-0 w-full max-w-md h-screen bg-white dark:bg-gray-800 shadow-lg z-50 flex flex-col"
+        class="fixed top-0 right-0 w-full max-w-md h-screen bg-white dark:bg-gray-800 shadow-2xl z-50 flex flex-col"
       >
         <!-- Header -->
         <div
-          class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700"
+          class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700"
         >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-            Shopping Cart
+          <h2
+            class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2"
+          >
+            🛒 Shopping Cart
+            <span
+              v-if="cartStore.items.length > 0"
+              class="text-xs font-semibold bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full"
+            >
+              {{ itemCount }}
+            </span>
           </h2>
           <button
             @click="cartStore.closeDrawer()"
-            class="text-2xl text-gray-500 dark:text-gray-200 hover:text-gray-700 dark:hover:text-white transition"
+            class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+            aria-label="Close cart"
           >
             ✕
           </button>
@@ -34,28 +43,39 @@
         <div class="flex-1 overflow-y-auto p-6">
           <div
             v-if="cartStore.items.length === 0"
-            class="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-300"
+            class="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-400"
           >
             <div class="text-5xl mb-4">🛒</div>
-            <p class="text-lg mb-4">Your cart is empty</p>
+            <p
+              class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              Your cart is empty
+            </p>
+            <p class="text-sm text-gray-400 dark:text-gray-500 mb-5">
+              Add some socks to get started.
+            </p>
             <NuxtLink
               to="/products"
               @click="cartStore.closeDrawer()"
-              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              class="px-5 py-2.5 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-700 transition"
             >
               Continue Shopping
             </NuxtLink>
           </div>
 
-          <div v-else class="space-y-4">
+          <TransitionGroup v-else name="item" tag="div" class="space-y-4">
             <div
               v-for="(item, idx) in cartStore.cartItems"
               :key="`${item.productId}-${item.size}-${item.color}-${idx}`"
-              class="flex gap-4 pb-4 border-b border-gray-200 dark:border-gray-700"
+              class="flex gap-4 pb-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0 last:pb-0"
             >
               <!-- Image -->
-              <div
-                class="shrink-0 w-24 h-24 bg-gray-100 rounded-lg overflow-hidden"
+              <NuxtLink
+                :to="
+                  item.product ? `/products/${item.product.slug}` : '/products'
+                "
+                @click="cartStore.closeDrawer()"
+                class="shrink-0 w-20 h-20 bg-gray-50 dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700"
               >
                 <img
                   v-if="item.product"
@@ -63,53 +83,16 @@
                   :alt="item.product.name"
                   class="w-full h-full object-cover"
                 />
-              </div>
+              </NuxtLink>
 
               <!-- Details -->
               <div class="flex-1 min-w-0">
-                <h3
-                  class="font-semibold text-gray-900 dark:text-white line-clamp-2"
-                >
-                  {{ item.product?.name }}
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                  {{ item.size }} / {{ item.color }}
-                </p>
-                <p class="text-lg font-bold text-blue-600 mt-2">
-                  ${{ item.subtotal.toFixed(2) }}
-                </p>
-
-                <!-- Quantity Controls -->
-                <div class="flex items-center gap-2 mt-3">
-                  <button
-                    @click="
-                      cartStore.updateQuantity(
-                        item.productId,
-                        item.size,
-                        item.color,
-                        item.quantity - 1,
-                      )
-                    "
-                    class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
+                <div class="flex items-start justify-between gap-2">
+                  <h3
+                    class="font-semibold text-sm text-gray-900 dark:text-white line-clamp-2 leading-snug"
                   >
-                    −
-                  </button>
-                  <span class="w-8 text-center font-medium">{{
-                    item.quantity
-                  }}</span>
-                  <button
-                    @click="
-                      cartStore.updateQuantity(
-                        item.productId,
-                        item.size,
-                        item.color,
-                        item.quantity + 1,
-                      )
-                    "
-                    class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
-                  >
-                    +
-                  </button>
+                    {{ item.product?.name }}
+                  </h3>
                   <button
                     @click="
                       cartStore.removeFromCart(
@@ -118,35 +101,86 @@
                         item.color,
                       )
                     "
-                    class="ml-auto px-2 py-1 text-red-600 hover:bg-red-50 rounded transition"
+                    class="shrink-0 w-7 h-7 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition"
+                    aria-label="Remove item"
                   >
-                    🗑️
+                    <span class="text-sm">🗑️</span>
                   </button>
+                </div>
+
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  {{ item.size }} · {{ item.color }}
+                </p>
+
+                <div class="flex items-center justify-between mt-2.5">
+                  <!-- Quantity stepper -->
+                  <div
+                    class="inline-flex items-center border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden"
+                  >
+                    <button
+                      @click="
+                        cartStore.updateQuantity(
+                          item.productId,
+                          item.size,
+                          item.color,
+                          item.quantity - 1,
+                        )
+                      "
+                      class="w-7 h-7 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition text-sm"
+                      aria-label="Decrease quantity"
+                    >
+                      −
+                    </button>
+                    <span
+                      class="w-7 text-center text-sm font-semibold text-gray-900 dark:text-white"
+                      >{{ item.quantity }}</span
+                    >
+                    <button
+                      @click="
+                        cartStore.updateQuantity(
+                          item.productId,
+                          item.size,
+                          item.color,
+                          item.quantity + 1,
+                        )
+                      "
+                      class="w-7 h-7 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition text-sm"
+                      aria-label="Increase quantity"
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <p class="text-base font-bold text-gray-900 dark:text-white">
+                    ${{ item.subtotal.toFixed(2) }}
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
+          </TransitionGroup>
         </div>
 
         <!-- Footer -->
         <div
           v-if="cartStore.items.length > 0"
-          class="border-t border-gray-200 p-6 space-y-4"
+          class="border-t border-gray-100 dark:border-gray-700 p-6 space-y-4 bg-gray-50/50 dark:bg-gray-900/30"
         >
           <!-- Summary -->
-          <div class="space-y-2">
-            <div class="flex justify-between text-gray-700">
-              <span>Subtotal:</span>
+          <div class="space-y-1.5 text-sm">
+            <div class="flex justify-between text-gray-600 dark:text-gray-400">
+              <span>Subtotal</span>
               <span>${{ cartStore.totalPrice.toFixed(2) }}</span>
             </div>
-            <div class="flex justify-between text-gray-700">
-              <span>Shipping:</span>
-              <span>Free</span>
+            <div class="flex justify-between text-gray-600 dark:text-gray-400">
+              <span>Shipping</span>
+              <span class="text-green-600 dark:text-green-400 font-medium"
+                >Free</span
+              >
             </div>
             <div
-              class="flex justify-between text-lg font-bold text-gray-900 pt-2 border-t border-gray-200"
+              class="flex justify-between text-base font-bold text-gray-900 dark:text-white pt-2.5 border-t border-gray-200 dark:border-gray-700"
             >
-              <span>Total:</span>
+              <span>Total</span>
               <span>${{ cartStore.totalPrice.toFixed(2) }}</span>
             </div>
           </div>
@@ -156,13 +190,13 @@
             <NuxtLink
               to="/checkout"
               @click="cartStore.closeDrawer()"
-              class="block w-full px-4 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition text-center"
+              class="block w-full px-4 py-3.5 bg-blue-600 text-white rounded-xl font-bold text-sm text-center hover:bg-blue-700 active:scale-[0.99] transition"
             >
               Checkout
             </NuxtLink>
             <button
               @click="cartStore.clearCart()"
-              class="w-full px-4 py-3 bg-gray-200 text-gray-700 rounded-lg font-bold hover:bg-gray-300 transition"
+              class="w-full px-4 py-2.5 text-gray-500 dark:text-gray-400 rounded-xl font-medium text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition"
             >
               Clear Cart
             </button>
@@ -175,14 +209,17 @@
 
 <script setup lang="ts">
 const cartStore = useCartStore();
+
+const itemCount = computed(() =>
+  cartStore.items.reduce((total, item) => total + item.quantity, 0),
+);
 </script>
 
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
 }
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
@@ -190,11 +227,28 @@ const cartStore = useCartStore();
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
 }
-
 .slide-enter-from,
 .slide-leave-to {
   transform: translateX(100%);
+}
+
+.item-enter-active,
+.item-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.item-enter-from {
+  opacity: 0;
+  transform: translateX(12px);
+}
+.item-leave-to {
+  opacity: 0;
+  transform: translateX(-12px);
+}
+.item-move {
+  transition: transform 0.2s ease;
 }
 </style>

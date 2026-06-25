@@ -5,17 +5,7 @@
       class="relative overflow-hidden bg-linear-to-br from-blue-600 via-blue-700 to-blue-900 text-white"
     >
       <!-- Subtle pattern overlay -->
-      <div
-        class="absolute inset-0 opacity-10"
-        style="
-          background-image: radial-gradient(
-            circle at 1px 1px,
-            white 1px,
-            transparent 0
-          );
-          background-size: 28px 28px;
-        "
-      ></div>
+      <div class="absolute inset-0 opacity-10" :style="patternStyle" />
 
       <div
         class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32"
@@ -360,6 +350,12 @@ useSeoMeta({
   description:
     "Discover premium socks for every occasion. Comfort meets style at SocksCommerce.",
 });
+
+const patternStyle = {
+  backgroundImage:
+    "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+  backgroundSize: "28px 28px",
+};
 
 const isLoading = ref(true);
 const featuredProducts = ref<Product[]>([]);
