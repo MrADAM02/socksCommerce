@@ -4,6 +4,12 @@
     <div class="bg-white border-b border-gray-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 class="text-4xl font-bold text-gray-900">Checkout</h1>
+        <p
+          class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-amber-800 bg-amber-50 border border-amber-200 rounded-full px-3 py-1"
+        >
+          🧪 Demo mode — this checkout is simulated, no real orders or
+          payments are made
+        </p>
       </div>
     </div>
 
@@ -274,9 +280,12 @@
                   </div>
                 </div>
 
-                <p class="text-sm text-gray-600 flex items-center gap-2">
-                  <span>🔒</span>
-                  Your payment information is secure and encrypted
+                <p
+                  class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 flex items-center gap-2"
+                >
+                  <span>⚠️</span>
+                  Demo checkout — no real payment is processed and no card
+                  details are transmitted or stored.
                 </p>
 
                 <div class="pt-4 flex gap-3">

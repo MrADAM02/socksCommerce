@@ -8,6 +8,12 @@
         <div>
           <h1 class="text-4xl font-bold text-gray-900">My Account</h1>
           <p class="text-gray-600 mt-2">Welcome back, John Doe!</p>
+          <p
+            class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-amber-800 bg-amber-50 border border-amber-200 rounded-full px-3 py-1"
+          >
+            🧪 Demo mode — this is sample account data, not a real user
+            session
+          </p>
         </div>
         <button
           @click="handleLogout"
