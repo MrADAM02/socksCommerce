@@ -36,7 +36,7 @@ app/
   stores/         Pinia stores (cart)
   plugins/        cart persistence plugin
   types/          shared TypeScript interfaces
-composables/      useTheme, useToast
+composables/      useToast
 server/
   api/            product listing and detail endpoints
 data/

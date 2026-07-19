@@ -140,14 +140,11 @@
 </template>
 
 <script setup lang="ts">
-import { useTheme } from "../../../composables/useTheme";
-
 const isMenuOpen = ref(false);
 const cartStore = useCartStore();
 const cartItemCount = computed(() =>
   cartStore.items.reduce((total, item) => total + item.quantity, 0),
 );
-const { theme, toggleTheme } = useTheme();
 </script>
 
 <style scoped>

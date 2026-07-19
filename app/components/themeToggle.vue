@@ -1,38 +1,22 @@
 <template>
   <button
-    @click="toggleTheme()"
+    @click="isDark = !isDark"
     class="relative inline-flex items-center justify-center w-9 h-9 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-    :title="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
-    :aria-label="
-      theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-    "
+    :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+    :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
   >
-    <Transition name="theme-icon" mode="out-in">
-      <span v-if="theme === 'dark'" key="moon" class="text-base">🌙</span>
-      <span v-else key="sun" class="text-base">☀️</span>
-    </Transition>
+    <span class="text-base hidden dark:inline-block">🌙</span>
+    <span class="text-base dark:hidden">☀️</span>
   </button>
 </template>
 
 <script setup lang="ts">
-import { useTheme } from "~~/composables/useTheme";
+const colorMode = useColorMode();
 
-const { theme, toggleTheme } = useTheme();
+const isDark = computed({
+  get: () => colorMode.value === "dark",
+  set: (value: boolean) => {
+    colorMode.preference = value ? "dark" : "light";
+  },
+});
 </script>
-
-<style scoped>
-.theme-icon-enter-active,
-.theme-icon-leave-active {
-  transition:
-    opacity 0.15s ease,
-    transform 0.15s ease;
-}
-.theme-icon-enter-from {
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.6);
-}
-.theme-icon-leave-to {
-  opacity: 0;
-  transform: rotate(90deg) scale(0.6);
-}
-</style>
