@@ -67,6 +67,21 @@
           <!-- Theme Toggle -->
           <ThemeToggle />
 
+          <!-- Wishlist -->
+          <NuxtLink
+            to="/wishlist"
+            class="relative hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            aria-label="Open wishlist"
+          >
+            <span class="text-lg">♡</span>
+            <span
+              v-if="wishlistStore.count > 0"
+              class="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-bold rounded-full min-w-4.5 h-4.5 flex items-center justify-center px-1 leading-none"
+            >
+              {{ wishlistStore.count }}
+            </span>
+          </NuxtLink>
+
           <!-- Cart -->
           <button
             @click="cartStore.openDrawer()"
@@ -125,6 +140,12 @@
             @click="isMenuOpen = false"
             >✉️ Contact</NuxtLink
           >
+          <NuxtLink
+            to="/wishlist"
+            class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            @click="isMenuOpen = false"
+            >♡ Wishlist</NuxtLink
+          >
           <div class="pt-2 border-t border-gray-100 dark:border-gray-800 mt-2">
             <NuxtLink
               to="/login"
@@ -142,6 +163,7 @@
 <script setup lang="ts">
 const isMenuOpen = ref(false);
 const cartStore = useCartStore();
+const wishlistStore = useWishlistStore();
 const cartItemCount = computed(() =>
   cartStore.items.reduce((total, item) => total + item.quantity, 0),
 );

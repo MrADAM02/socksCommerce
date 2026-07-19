@@ -35,10 +35,15 @@
         <!-- Wishlist button -->
         <button
           @click.prevent="$emit('toggle-wishlist')"
-          class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm flex items-center justify-center text-gray-500 dark:text-gray-300 hover:text-red-500 transition shadow-sm opacity-0 group-hover:opacity-100"
-          aria-label="Add to wishlist"
+          class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm flex items-center justify-center transition shadow-sm"
+          :class="
+            isWishlisted
+              ? 'text-red-500 opacity-100'
+              : 'text-gray-500 dark:text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100'
+          "
+          :aria-label="isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'"
         >
-          <span class="text-sm">♡</span>
+          <span class="text-sm">{{ isWishlisted ? "♥" : "♡" }}</span>
         </button>
       </div>
 
@@ -102,9 +107,13 @@
 <script setup lang="ts">
 import type { Product } from "~/types";
 
-defineProps<{
-  product: Product;
-}>();
+withDefaults(
+  defineProps<{
+    product: Product;
+    isWishlisted?: boolean;
+  }>(),
+  { isWishlisted: false },
+);
 
 defineEmits<{
   "add-to-cart": [];

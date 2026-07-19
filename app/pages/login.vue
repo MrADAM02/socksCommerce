@@ -1,15 +1,15 @@
 <template>
   <div
-    class="min-h-screen bg-linear-to-br from-blue-600 to-blue-800 flex items-center justify-center p-4"
+    class="min-h-screen bg-linear-to-br from-blue-600 to-blue-800 dark:from-gray-900 dark:to-blue-950 flex items-center justify-center p-4"
   >
-    <div class="bg-white rounded-lg shadow-2xl max-w-md w-full p-8">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-md w-full p-8">
       <!-- Header -->
       <div class="text-center mb-8">
         <div class="text-5xl mb-3">🧦</div>
-        <h1 class="text-3xl font-bold text-gray-900">Sign In</h1>
-        <p class="text-gray-600 mt-2">Welcome back to Sharabat</p>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Sign In</h1>
+        <p class="text-gray-600 dark:text-gray-400 mt-2">Welcome back to Sharabat</p>
         <p
-          class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-amber-800 bg-amber-50 border border-amber-200 rounded-full px-3 py-1"
+          class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-amber-800 dark:text-amber-200 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-full px-3 py-1"
         >
           🧪 Demo mode — no real authentication, any credentials will "sign
           you in"
@@ -22,7 +22,7 @@
         <div>
           <label
             for="email"
-            class="block text-sm font-medium text-gray-700 mb-2"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >Email Address</label
           >
           <input
@@ -31,7 +31,7 @@
             type="email"
             placeholder="you@example.com"
             required
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
           />
         </div>
 
@@ -39,7 +39,7 @@
         <div>
           <label
             for="password"
-            class="block text-sm font-medium text-gray-700 mb-2"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >Password</label
           >
           <input
@@ -48,7 +48,7 @@
             type="password"
             placeholder="••••••••"
             required
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition"
           />
         </div>
 
@@ -57,9 +57,9 @@
           <input
             v-model="rememberMe"
             type="checkbox"
-            class="rounded border-gray-300"
+            class="rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700"
           />
-          <span class="text-sm text-gray-700">Remember me</span>
+          <span class="text-sm text-gray-700 dark:text-gray-300">Remember me</span>
         </label>
 
         <!-- Submit -->
@@ -73,35 +73,35 @@
 
       <!-- Divider -->
       <div class="flex items-center gap-3 my-6">
-        <div class="flex-1 border-t border-gray-300"></div>
-        <span class="text-gray-500 text-sm">Or continue with</span>
-        <div class="flex-1 border-t border-gray-300"></div>
+        <div class="flex-1 border-t border-gray-300 dark:border-gray-600"></div>
+        <span class="text-gray-500 dark:text-gray-400 text-sm">Or continue with</span>
+        <div class="flex-1 border-t border-gray-300 dark:border-gray-600"></div>
       </div>
 
       <!-- Social Login -->
       <div class="grid grid-cols-2 gap-3">
         <button
-          class="px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium text-sm"
+          class="px-4 py-3 border border-gray-300 dark:border-gray-600 dark:text-gray-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition font-medium text-sm"
         >
           Google
         </button>
         <button
-          class="px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium text-sm"
+          class="px-4 py-3 border border-gray-300 dark:border-gray-600 dark:text-gray-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition font-medium text-sm"
         >
           GitHub
         </button>
       </div>
 
       <!-- Footer -->
-      <p class="text-center text-gray-600 mt-6">
+      <p class="text-center text-gray-600 dark:text-gray-400 mt-6">
         Don't have an account?
-        <NuxtLink to="/signup" class="text-blue-600 font-bold hover:underline"
+        <NuxtLink to="/signup" class="text-blue-600 dark:text-blue-400 font-bold hover:underline"
           >Sign up</NuxtLink
         >
       </p>
 
-      <p class="text-center text-sm text-gray-500 mt-4">
-        <a href="#" class="hover:text-blue-600 transition"
+      <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
+        <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >Forgot your password?</a
         >
       </p>
@@ -113,17 +113,9 @@
 const email = ref("");
 const password = ref("");
 const rememberMe = ref(false);
-const router = useRouter();
 
 async function handleLogin() {
-  // Mock login - in a real app, this would call an auth API
-  console.log("Login attempt:", {
-    email: email.value,
-    password: password.value,
-  });
-
-  // For now, just redirect to dashboard
-  // In production, you'd validate credentials and set auth token
+  // Mock login - in a real app, this would call an auth API and set a token
   await navigateTo("/account");
 }
 </script>

@@ -7,10 +7,10 @@
       <!-- Gradient mesh background -->
       <div class="absolute inset-0">
         <div
-          class="absolute -top-32 -left-24 w-[32rem] h-[32rem] bg-blue-600/40 rounded-full blur-3xl"
+          class="absolute -top-32 -left-24 w-lg h-128 bg-blue-600/40 rounded-full blur-3xl"
         ></div>
         <div
-          class="absolute top-1/3 -right-24 w-[28rem] h-[28rem] bg-indigo-500/30 rounded-full blur-3xl"
+          class="absolute top-1/3 -right-24 w-md h-112 bg-indigo-500/30 rounded-full blur-3xl"
         ></div>
         <div
           class="absolute inset-0 opacity-[0.07]"
@@ -212,7 +212,9 @@
             v-for="product in featuredProducts"
             :key="product.id"
             :product="product"
+            :is-wishlisted="wishlistStore.isWishlisted(product.id)"
             @add-to-cart="addToCart(product)"
+            @toggle-wishlist="toggleWishlist(product)"
           />
         </div>
 
@@ -425,6 +427,7 @@ const selectedColor = ref("");
 const quantity = ref(1);
 
 const cartStore = useCartStore();
+const wishlistStore = useWishlistStore();
 const { show } = useCustomToast();
 
 const newsletterEmail = ref("");
@@ -512,6 +515,13 @@ function confirmAddToCart() {
   );
   selectedProduct.value = null;
   show("Added to cart", { type: "success" });
+}
+
+function toggleWishlist(product: Product) {
+  const added = wishlistStore.toggleWishlist(product.id);
+  show(added ? "Added to wishlist" : "Removed from wishlist", {
+    type: "success",
+  });
 }
 
 function subscribeToNewsletter() {

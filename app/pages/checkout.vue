@@ -1,11 +1,11 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Header -->
-    <div class="bg-white border-b border-gray-200">
+    <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 class="text-4xl font-bold text-gray-900">Checkout</h1>
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Checkout</h1>
         <p
-          class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-amber-800 bg-amber-50 border border-amber-200 rounded-full px-3 py-1"
+          class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-amber-800 dark:text-amber-200 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-full px-3 py-1"
         >
           🧪 Demo mode — this checkout is simulated, no real orders or
           payments are made
@@ -17,7 +17,7 @@
       v-if="cartStore.items.length === 0"
       class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center"
     >
-      <p class="text-2xl text-gray-600 mb-4">Your cart is empty</p>
+      <p class="text-2xl text-gray-600 dark:text-gray-400 mb-4">Your cart is empty</p>
       <NuxtLink
         to="/products"
         class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-bold"
@@ -40,7 +40,7 @@
               <div
                 :class="{
                   'bg-blue-600 text-white': currentStep >= idx,
-                  'bg-gray-200 text-gray-500': currentStep < idx,
+                  'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400': currentStep < idx,
                 }"
                 class="w-10 h-10 rounded-full flex items-center justify-center font-bold transition"
               >
@@ -48,8 +48,8 @@
               </div>
               <span
                 :class="{
-                  'text-blue-600': currentStep >= idx,
-                  'text-gray-500': currentStep < idx,
+                  'text-blue-600 dark:text-blue-400': currentStep >= idx,
+                  'text-gray-500 dark:text-gray-400': currentStep < idx,
                 }"
                 class="ml-2 font-medium transition"
               >
@@ -57,100 +57,100 @@
               </span>
               <div
                 v-if="idx < steps.length - 1"
-                class="flex-1 h-0.5 ml-4 bg-gray-300"
+                class="flex-1 h-0.5 ml-4 bg-gray-300 dark:bg-gray-700"
               ></div>
             </div>
           </div>
 
           <!-- Step Content -->
-          <div class="bg-white rounded-lg shadow-md p-8">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
             <!-- Step 1: Shipping Address -->
             <div v-if="currentStep === 0">
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Shipping Address
               </h2>
               <form @submit.prevent="nextStep" class="space-y-4">
                 <div class="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >First Name</label
                     >
                     <input
                       v-model="formData.firstName"
                       type="text"
                       required
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >Last Name</label
                     >
                     <input
                       v-model="formData.lastName"
                       type="text"
                       required
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >Email</label
                   >
                   <input
                     v-model="formData.email"
                     type="email"
                     required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >Address</label
                   >
                   <input
                     v-model="formData.address"
                     type="text"
                     required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-4">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >City</label
                     >
                     <input
                       v-model="formData.city"
                       type="text"
                       required
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >State</label
                     >
                     <input
                       v-model="formData.state"
                       type="text"
                       required
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >ZIP Code</label
                     >
                     <input
                       v-model="formData.zip"
                       type="text"
                       required
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     />
                   </div>
                 </div>
@@ -158,7 +158,7 @@
                 <div class="pt-4 flex gap-3">
                   <NuxtLink
                     to="/cart"
-                    class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-bold"
+                    class="px-6 py-3 border border-gray-300 dark:border-gray-600 dark:text-gray-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition font-bold"
                   >
                     Back to Cart
                   </NuxtLink>
@@ -174,7 +174,7 @@
 
             <!-- Step 2: Shipping Method -->
             <div v-if="currentStep === 1">
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Shipping Method
               </h2>
               <div class="space-y-3 mb-6">
@@ -184,8 +184,8 @@
                   class="flex items-center p-4 border-2 rounded-lg cursor-pointer transition"
                   :class="
                     formData.shippingMethod === method.id
-                      ? 'border-blue-600 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-blue-600 bg-blue-50 dark:bg-blue-900/30'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                   "
                 >
                   <input
@@ -195,12 +195,12 @@
                     class="w-4 h-4"
                   />
                   <div class="ml-4 flex-1">
-                    <p class="font-semibold text-gray-900">{{ method.name }}</p>
-                    <p class="text-sm text-gray-600">
+                    <p class="font-semibold text-gray-900 dark:text-white">{{ method.name }}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
                       {{ method.description }}
                     </p>
                   </div>
-                  <p class="text-lg font-bold text-gray-900">
+                  <p class="text-lg font-bold text-gray-900 dark:text-white">
                     ${{ method.price.toFixed(2) }}
                   </p>
                 </label>
@@ -209,7 +209,7 @@
               <div class="pt-4 flex gap-3">
                 <button
                   @click="previousStep"
-                  class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-bold"
+                  class="px-6 py-3 border border-gray-300 dark:border-gray-600 dark:text-gray-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition font-bold"
                 >
                   Back
                 </button>
@@ -224,24 +224,24 @@
 
             <!-- Step 3: Payment -->
             <div v-if="currentStep === 2">
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Payment Information
               </h2>
               <form @submit.prevent="submitOrder" class="space-y-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >Card Holder Name</label
                   >
                   <input
                     v-model="formData.cardName"
                     type="text"
                     required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                   />
                 </div>
 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >Card Number</label
                   >
                   <input
@@ -249,13 +249,13 @@
                     type="text"
                     placeholder="1234 5678 9012 3456"
                     required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 font-mono"
+                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 font-mono"
                   />
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >Expiry Date</label
                     >
                     <input
@@ -263,11 +263,11 @@
                       type="text"
                       placeholder="MM/YY"
                       required
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 font-mono"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 font-mono"
                     />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                       >CVV</label
                     >
                     <input
@@ -275,13 +275,13 @@
                       type="text"
                       placeholder="123"
                       required
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 font-mono"
+                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 font-mono"
                     />
                   </div>
                 </div>
 
                 <p
-                  class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 flex items-center gap-2"
+                  class="text-sm text-amber-800 dark:text-amber-200 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg px-4 py-3 flex items-center gap-2"
                 >
                   <span>⚠️</span>
                   Demo checkout — no real payment is processed and no card
@@ -292,14 +292,14 @@
                   <button
                     type="button"
                     @click="previousStep"
-                    class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-bold"
+                    class="px-6 py-3 border border-gray-300 dark:border-gray-600 dark:text-gray-200 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition font-bold"
                   >
                     Back
                   </button>
                   <button
                     type="submit"
                     :disabled="isProcessing"
-                    class="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-bold disabled:bg-gray-400 disabled:cursor-not-allowed"
+                    class="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-bold disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed"
                   >
                     {{ isProcessing ? "Processing..." : "Place Order" }}
                   </button>
@@ -311,11 +311,11 @@
 
         <!-- Order Summary -->
         <div class="lg:col-span-1">
-          <div class="bg-white rounded-lg shadow-md p-6 sticky top-20">
-            <h2 class="text-xl font-bold mb-6">Order Summary</h2>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 sticky top-20">
+            <h2 class="text-xl font-bold mb-6 text-gray-900 dark:text-white">Order Summary</h2>
 
             <div
-              class="space-y-3 mb-6 max-h-64 overflow-y-auto pb-6 border-b border-gray-200"
+              class="space-y-3 mb-6 max-h-64 overflow-y-auto pb-6 border-b border-gray-200 dark:border-gray-700"
             >
               <div
                 v-for="(item, idx) in cartStore.cartItems"
@@ -323,7 +323,7 @@
                 class="flex items-center gap-3"
               >
                 <div
-                  class="w-16 h-16 bg-gray-100 rounded overflow-hidden shrink-0"
+                  class="w-16 h-16 bg-gray-100 dark:bg-gray-900 rounded overflow-hidden shrink-0"
                 >
                   <img
                     v-if="item.product"
@@ -333,15 +333,15 @@
                   />
                 </div>
                 <div class="flex-1 min-w-0">
-                  <p class="font-semibold text-sm text-gray-900 line-clamp-1">
+                  <p class="font-semibold text-sm text-gray-900 dark:text-white line-clamp-1">
                     {{ item.product?.name }}
                   </p>
-                  <p class="text-xs text-gray-600">
+                  <p class="text-xs text-gray-600 dark:text-gray-400">
                     {{ item.size }} / {{ item.color }}
                   </p>
-                  <p class="text-xs text-gray-600">Qty: {{ item.quantity }}</p>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Qty: {{ item.quantity }}</p>
                 </div>
-                <p class="font-bold text-gray-900">
+                <p class="font-bold text-gray-900 dark:text-white">
                   ${{ item.subtotal.toFixed(2) }}
                 </p>
               </div>
@@ -349,32 +349,32 @@
 
             <!-- Pricing -->
             <div class="space-y-3 mb-6">
-              <div class="flex justify-between text-gray-700">
+              <div class="flex justify-between text-gray-700 dark:text-gray-300">
                 <span>Subtotal:</span>
                 <span>${{ cartStore.totalPrice.toFixed(2) }}</span>
               </div>
               <div
                 v-if="currentStep >= 1"
-                class="flex justify-between text-gray-700"
+                class="flex justify-between text-gray-700 dark:text-gray-300"
               >
                 <span>Shipping:</span>
                 <span>${{ selectedShippingPrice.toFixed(2) }}</span>
               </div>
-              <div class="flex justify-between text-gray-700">
+              <div class="flex justify-between text-gray-700 dark:text-gray-300">
                 <span>Tax:</span>
                 <span>${{ (cartStore.totalPrice * 0.08).toFixed(2) }}</span>
               </div>
               <div
-                class="flex justify-between text-lg font-bold border-t border-gray-200 pt-3"
+                class="flex justify-between text-lg font-bold border-t border-gray-200 dark:border-gray-700 pt-3 text-gray-900 dark:text-white"
               >
                 <span>Total:</span>
-                <span class="text-blue-600">${{ finalTotal.toFixed(2) }}</span>
+                <span class="text-blue-600 dark:text-blue-400">${{ finalTotal.toFixed(2) }}</span>
               </div>
             </div>
 
             <button
               @click="navigateTo('/products')"
-              class="w-full px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition text-sm"
+              class="w-full px-4 py-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition text-sm"
             >
               Continue Shopping
             </button>
@@ -386,8 +386,12 @@
 </template>
 
 <script setup lang="ts">
+import { useCustomToast } from "../../composables/useToast";
+import { generateOrderNumber, useLastOrder } from "../../composables/useLastOrder";
+
 const cartStore = useCartStore();
-const router = useRouter();
+const { show } = useCustomToast();
+const lastOrder = useLastOrder();
 
 const currentStep = ref(0);
 const isProcessing = ref(false);
@@ -463,14 +467,37 @@ async function submitOrder() {
     // Simulate payment processing
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // Clear cart
+    lastOrder.value = {
+      orderNumber: generateOrderNumber(),
+      email: formData.value.email,
+      shipping: {
+        name: `${formData.value.firstName} ${formData.value.lastName}`.trim(),
+        address: formData.value.address,
+        city: formData.value.city,
+        state: formData.value.state,
+        zip: formData.value.zip,
+      },
+      items: cartStore.cartItems.map((item) => ({
+        productId: item.productId,
+        name: item.product?.name || "Product",
+        image: item.product?.image || "",
+        size: item.size,
+        color: item.color,
+        quantity: item.quantity,
+        subtotal: item.subtotal,
+      })),
+      subtotal: cartStore.totalPrice,
+      shippingPrice: selectedShippingPrice.value,
+      tax: cartStore.totalPrice * 0.08,
+      total: finalTotal.value,
+    };
+
     cartStore.clearCart();
 
-    // Redirect to confirmation
     await navigateTo("/order-confirmation");
   } catch (error) {
     console.error("Order failed:", error);
-    alert("Order failed. Please try again.");
+    show("Order failed. Please try again.", { type: "error" });
   } finally {
     isProcessing.value = false;
   }

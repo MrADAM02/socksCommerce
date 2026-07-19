@@ -1,10 +1,10 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <!-- Header -->
-    <div class="bg-white border-b border-gray-200">
+    <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 class="text-4xl font-bold text-gray-900">Products</h1>
-        <p class="text-gray-600 mt-2">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Products</h1>
+        <p class="text-gray-600 dark:text-gray-400 mt-2">
           Browse our complete collection of premium socks
         </p>
       </div>
@@ -14,21 +14,21 @@
       <div class="grid md:grid-cols-4 gap-8">
         <!-- Filters Sidebar -->
         <div class="md:col-span-1">
-          <div class="bg-white rounded-lg p-6 shadow-md">
-            <h2 class="text-lg font-bold mb-6">Filters</h2>
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+            <h2 class="text-lg font-bold mb-6 text-gray-900 dark:text-white">Filters</h2>
 
             <!-- Category Filter -->
             <div class="mb-6">
-              <h3 class="font-semibold text-gray-900 mb-3">Category</h3>
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Category</h3>
               <div class="space-y-2">
                 <label class="flex items-center gap-2 cursor-pointer">
                   <input
                     v-model="selectedCategory"
                     type="radio"
                     value=""
-                    class="rounded border-gray-300"
+                    class="rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700"
                   />
-                  <span class="text-gray-700">All</span>
+                  <span class="text-gray-700 dark:text-gray-300">All</span>
                 </label>
                 <label
                   v-for="cat in categories"
@@ -39,18 +39,18 @@
                     v-model="selectedCategory"
                     type="radio"
                     :value="cat"
-                    class="rounded border-gray-300"
+                    class="rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700"
                   />
-                  <span class="text-gray-700 capitalize">{{ cat }}</span>
+                  <span class="text-gray-700 dark:text-gray-300 capitalize">{{ cat }}</span>
                 </label>
               </div>
             </div>
 
             <!-- Price Filter — dual bound with validation -->
             <div class="mb-6">
-              <h3 class="font-semibold text-gray-900 mb-3">Price Range</h3>
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Price Range</h3>
               <div
-                class="flex items-center justify-between text-sm font-medium text-gray-700 mb-3"
+                class="flex items-center justify-between text-sm font-medium text-gray-700 dark:text-gray-300 mb-3"
               >
                 <span>${{ minPrice }}</span>
                 <span>–</span>
@@ -58,7 +58,7 @@
               </div>
               <div class="space-y-3">
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block"
+                  <label class="text-xs text-gray-500 dark:text-gray-400 mb-1 block"
                     >Min price</label
                   >
                   <input
@@ -70,7 +70,7 @@
                   />
                 </div>
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block"
+                  <label class="text-xs text-gray-500 dark:text-gray-400 mb-1 block"
                     >Max price</label
                   >
                   <input
@@ -86,7 +86,7 @@
 
             <!-- Size Filter -->
             <div class="mb-6">
-              <h3 class="font-semibold text-gray-900 mb-3">Size</h3>
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Size</h3>
               <div class="space-y-2">
                 <label
                   v-for="size in sizes"
@@ -97,16 +97,16 @@
                     v-model="selectedSizes"
                     type="checkbox"
                     :value="size"
-                    class="rounded border-gray-300"
+                    class="rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700"
                   />
-                  <span class="text-gray-700">{{ size }}</span>
+                  <span class="text-gray-700 dark:text-gray-300">{{ size }}</span>
                 </label>
               </div>
             </div>
 
             <!-- Color Filter -->
             <div class="mb-6">
-              <h3 class="font-semibold text-gray-900 mb-3">Color</h3>
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Color</h3>
               <div class="space-y-2">
                 <label
                   v-for="color in colors"
@@ -117,9 +117,9 @@
                     v-model="selectedColors"
                     type="checkbox"
                     :value="color"
-                    class="rounded border-gray-300"
+                    class="rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700"
                   />
-                  <span class="text-gray-700">{{ color }}</span>
+                  <span class="text-gray-700 dark:text-gray-300">{{ color }}</span>
                 </label>
               </div>
             </div>
@@ -127,7 +127,7 @@
             <!-- Reset Button -->
             <button
               @click="resetFilters"
-              class="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium"
+              class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition font-medium"
             >
               Reset Filters
             </button>
@@ -139,15 +139,15 @@
           <!-- Toolbar: sort + product count -->
           <div class="flex items-center justify-between mb-4 gap-4 flex-wrap">
             <!-- Product count -->
-            <p class="text-sm text-gray-600">
+            <p class="text-sm text-gray-600 dark:text-gray-400">
               <template v-if="isLoading">Loading products…</template>
               <template v-else>
                 Showing
-                <span class="font-semibold text-gray-900">{{
+                <span class="font-semibold text-gray-900 dark:text-white">{{
                   filteredProducts.length
                 }}</span>
                 of
-                <span class="font-semibold text-gray-900">{{
+                <span class="font-semibold text-gray-900 dark:text-white">{{
                   allProducts.length
                 }}</span>
                 products
@@ -156,13 +156,13 @@
 
             <!-- Sort dropdown -->
             <div class="flex items-center gap-2">
-              <label for="sort" class="text-sm text-gray-600 whitespace-nowrap"
+              <label for="sort" class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap"
                 >Sort by</label
               >
               <select
                 id="sort"
                 v-model="sortBy"
-                class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="text-sm border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="default">Featured</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -181,12 +181,12 @@
             <span
               v-for="tag in activeFilterTags"
               :key="tag.key + tag.value"
-              class="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-200 text-blue-700 text-sm rounded-full"
+              class="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 text-sm rounded-full"
             >
               {{ tag.label }}
               <button
                 @click="removeFilter(tag)"
-                class="hover:text-blue-900 focus:outline-none leading-none"
+                class="hover:text-blue-900 dark:hover:text-blue-100 focus:outline-none leading-none"
                 :aria-label="`Remove filter: ${tag.label}`"
               >
                 ✕
@@ -194,7 +194,7 @@
             </span>
             <button
               @click="resetFilters"
-              class="text-sm text-gray-500 hover:text-gray-700 underline ml-1"
+              class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 underline ml-1"
             >
               Clear all
             </button>
@@ -206,9 +206,9 @@
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             <div v-for="i in 6" :key="i" class="animate-pulse">
-              <div class="bg-gray-200 aspect-square rounded-lg mb-4"></div>
-              <div class="h-4 bg-gray-200 rounded mb-2"></div>
-              <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div class="bg-gray-200 dark:bg-gray-800 aspect-square rounded-lg mb-4"></div>
+              <div class="h-4 bg-gray-200 dark:bg-gray-800 rounded mb-2"></div>
+              <div class="h-4 bg-gray-200 dark:bg-gray-800 rounded w-3/4"></div>
             </div>
           </div>
 
@@ -234,7 +234,9 @@
               <div :class="{ 'opacity-60': !product.inStock }">
                 <ProductCard
                   :product="product"
+                  :is-wishlisted="wishlistStore.isWishlisted(product.id)"
                   @add-to-cart="addToCart(product)"
+                  @toggle-wishlist="toggleWishlist(product)"
                 />
               </div>
             </div>
@@ -242,7 +244,7 @@
 
           <!-- Empty state -->
           <div v-else class="text-center py-12">
-            <p class="text-xl text-gray-600 mb-4">
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-4">
               No products found matching your filters.
             </p>
             <button
@@ -259,14 +261,16 @@
     <!-- Add to Cart Modal -->
     <div
       v-if="selectedProduct"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
     >
-      <div class="bg-white rounded-lg max-w-md w-full p-6">
-        <h3 class="text-2xl font-bold mb-4">{{ selectedProduct.name }}</h3>
+      <div class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full p-6">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+          {{ selectedProduct.name }}
+        </h3>
 
         <!-- Size Selection -->
         <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700 mb-2"
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >Size</label
           >
           <div class="grid grid-cols-4 gap-2">
@@ -276,7 +280,7 @@
               @click="selectedSize = size"
               :class="{
                 'bg-blue-600 text-white': selectedSize === size,
-                'bg-gray-200 text-gray-700 hover:bg-gray-300':
+                'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600':
                   selectedSize !== size,
               }"
               class="py-2 rounded font-medium transition"
@@ -288,7 +292,7 @@
 
         <!-- Color Selection -->
         <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700 mb-2"
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >Color</label
           >
           <div class="grid grid-cols-4 gap-2">
@@ -298,9 +302,9 @@
               @click="selectedColor = color"
               :class="{
                 'ring-2 ring-blue-600': selectedColor === color,
-                'ring-1 ring-gray-300': selectedColor !== color,
+                'ring-1 ring-gray-300 dark:ring-gray-600': selectedColor !== color,
               }"
-              class="py-2 rounded text-sm transition"
+              class="py-2 rounded text-sm transition text-gray-700 dark:text-gray-200"
             >
               {{ color }}
             </button>
@@ -309,13 +313,13 @@
 
         <!-- Quantity -->
         <div class="mb-6">
-          <label class="block text-sm font-medium text-gray-700 mb-2"
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >Quantity</label
           >
           <div class="flex items-center gap-3">
             <button
               @click="quantity = Math.max(1, quantity - 1)"
-              class="px-3 py-1 bg-gray-200 rounded"
+              class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded"
             >
               -
             </button>
@@ -323,9 +327,12 @@
               v-model.number="quantity"
               type="number"
               min="1"
-              class="w-12 text-center border rounded"
+              class="w-12 text-center border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded"
             />
-            <button @click="quantity++" class="px-3 py-1 bg-gray-200 rounded">
+            <button
+              @click="quantity++"
+              class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded"
+            >
               +
             </button>
           </div>
@@ -341,7 +348,7 @@
           </button>
           <button
             @click="selectedProduct = null"
-            class="flex-1 bg-gray-200 text-gray-700 py-3 rounded-lg font-bold hover:bg-gray-300 transition"
+            class="flex-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-3 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-600 transition"
           >
             Cancel
           </button>
@@ -361,8 +368,8 @@ useSeoMeta({
   description:
     "Browse our complete collection of premium socks. Filter by size, color, and price.",
 });
-const router = useRouter();
 const cartStore = useCartStore();
+const wishlistStore = useWishlistStore();
 const { show } = useCustomToast();
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -550,5 +557,12 @@ function confirmAddToCart() {
   );
   selectedProduct.value = null;
   show("Added to cart", { type: "success" });
+}
+
+function toggleWishlist(product: Product) {
+  const added = wishlistStore.toggleWishlist(product.id);
+  show(added ? "Added to wishlist" : "Removed from wishlist", {
+    type: "success",
+  });
 }
 </script>

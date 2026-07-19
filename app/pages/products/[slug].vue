@@ -244,10 +244,16 @@
               {{ product.inStock ? "Add to Cart" : "Out of Stock" }}
             </button>
             <button
-              class="w-14 flex items-center justify-center border border-gray-200 dark:border-gray-700 rounded-xl text-gray-500 dark:text-gray-400 hover:border-red-300 hover:text-red-500 transition text-xl"
-              aria-label="Save to wishlist"
+              @click="toggleWishlist"
+              class="w-14 flex items-center justify-center border rounded-xl transition text-xl"
+              :class="
+                isWishlisted
+                  ? 'border-red-300 dark:border-red-800 text-red-500'
+                  : 'border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-red-300 hover:text-red-500'
+              "
+              :aria-label="isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'"
             >
-              ♡
+              {{ isWishlisted ? "♥" : "♡" }}
             </button>
           </div>
 
@@ -330,7 +336,9 @@
             v-for="related in relatedProducts"
             :key="related.id"
             :product="related"
+            :is-wishlisted="wishlistStore.isWishlisted(related.id)"
             @add-to-cart="addRelatedToCart(related)"
+            @toggle-wishlist="wishlistStore.toggleWishlist(related.id)"
           />
         </div>
       </div>
@@ -366,6 +374,7 @@ import { useCustomToast } from "../../../composables/useToast";
 
 const route = useRoute();
 const cartStore = useCartStore();
+const wishlistStore = useWishlistStore();
 const { show } = useCustomToast();
 
 // ── State — declared first so computeds below can safely reference them ───────
@@ -439,6 +448,18 @@ watch(
     if (newSlug) loadProduct(newSlug as string);
   },
 );
+
+const isWishlisted = computed(() =>
+  product.value ? wishlistStore.isWishlisted(product.value.id) : false,
+);
+
+function toggleWishlist() {
+  if (!product.value) return;
+  const added = wishlistStore.toggleWishlist(product.value.id);
+  show(added ? "Added to wishlist" : "Removed from wishlist", {
+    type: "success",
+  });
+}
 
 // ── Actions ───────────────────────────────────────────────────────────────────
 function addToCart() {
