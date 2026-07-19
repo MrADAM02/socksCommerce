@@ -398,8 +398,8 @@ const relatedProducts = computed(() => {
 
 const title = computed(() =>
   product.value
-    ? `${product.value.name} — SocksCommerce`
-    : "Product — SocksCommerce",
+    ? `${product.value.name} — Sharabat`
+    : "Product — Sharabat",
 );
 const description = computed(() =>
   product.value ? product.value.description : "Product details",

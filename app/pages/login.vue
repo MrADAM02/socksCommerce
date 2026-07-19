@@ -7,7 +7,7 @@
       <div class="text-center mb-8">
         <div class="text-5xl mb-3">🧦</div>
         <h1 class="text-3xl font-bold text-gray-900">Sign In</h1>
-        <p class="text-gray-600 mt-2">Welcome back to SocksCommerce</p>
+        <p class="text-gray-600 mt-2">Welcome back to Sharabat</p>
         <p
           class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-amber-800 bg-amber-50 border border-amber-200 rounded-full px-3 py-1"
         >

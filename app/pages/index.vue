@@ -2,13 +2,24 @@
   <div class="dark:bg-gray-900">
     <!-- ── Hero ──────────────────────────────────────────────────────────── -->
     <section
-      class="relative overflow-hidden bg-linear-to-br from-blue-600 via-blue-700 to-blue-900 text-white"
+      class="relative overflow-hidden bg-gray-950 text-white pb-20 md:pb-24"
     >
-      <!-- Subtle pattern overlay -->
-      <div class="absolute inset-0 opacity-10" :style="patternStyle" />
+      <!-- Gradient mesh background -->
+      <div class="absolute inset-0">
+        <div
+          class="absolute -top-32 -left-24 w-[32rem] h-[32rem] bg-blue-600/40 rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute top-1/3 -right-24 w-[28rem] h-[28rem] bg-indigo-500/30 rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute inset-0 opacity-[0.07]"
+          :style="patternStyle"
+        ></div>
+      </div>
 
       <div
-        class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32"
+        class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28"
       >
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -23,14 +34,17 @@
             </div>
 
             <h1
-              class="text-5xl md:text-6xl font-extrabold leading-tight mb-5 tracking-tight"
+              class="text-5xl md:text-6xl font-extrabold leading-[1.05] mb-5 tracking-tight"
             >
-              Premium Socks<br />
-              <span class="text-blue-200">for Every Step</span>
+              Step into
+              <span
+                class="bg-linear-to-r from-blue-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent"
+                >Sharabat</span
+              >
             </h1>
-            <p class="text-lg text-blue-100/90 mb-8 max-w-md leading-relaxed">
-              Discover our curated collection of comfort-first socks — from
-              everyday casuals to performance sport and luxury dress styles.
+            <p class="text-lg text-blue-100/80 mb-8 max-w-md leading-relaxed">
+              Comfort-first socks for every step — from everyday casuals to
+              performance sport and luxury dress styles.
             </p>
 
             <div class="flex flex-wrap gap-3">
@@ -50,7 +64,7 @@
             </div>
 
             <!-- Trust badges -->
-            <div class="mt-10 flex flex-wrap gap-6 text-blue-100/80 text-sm">
+            <div class="mt-10 flex flex-wrap gap-6 text-blue-100/70 text-sm">
               <span class="flex items-center gap-1.5"
                 >✓ <span>30-day returns</span></span
               >
@@ -67,12 +81,16 @@
           <div class="flex justify-center md:justify-end">
             <div class="relative">
               <div
-                class="w-64 h-64 md:w-80 md:h-80 bg-white/10 rounded-3xl flex items-center justify-center border border-white/20 backdrop-blur-sm"
+                class="grid grid-cols-2 gap-3 w-64 md:w-80 p-3 bg-white/5 rounded-3xl border border-white/15 backdrop-blur-sm"
               >
-                <span
-                  class="text-[120px] md:text-[150px] select-none drop-shadow-xl"
-                  >🧦</span
+                <div
+                  v-for="tile in showcaseTiles"
+                  :key="tile.emoji"
+                  class="aspect-square rounded-2xl flex items-center justify-center text-4xl md:text-5xl"
+                  :class="tile.bg"
                 >
+                  {{ tile.emoji }}
+                </div>
               </div>
               <!-- Floating stat badges -->
               <div
@@ -89,27 +107,21 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ── Stats bar ──────────────────────────────────────────────────────── -->
-    <section
-      class="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Floating stats card, overlapping the section below -->
+      <div
+        class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 md:mt-20"
+      >
         <div
-          class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100 dark:divide-gray-800"
+          class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 bg-white/10 border border-white/15 rounded-3xl backdrop-blur-lg shadow-2xl shadow-black/20"
         >
           <div
             v-for="stat in stats"
             :key="stat.label"
-            class="py-5 px-6 text-center"
+            class="py-6 px-6 text-center"
           >
-            <p class="text-2xl font-bold text-gray-900 dark:text-white">
-              {{ stat.value }}
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
-              {{ stat.label }}
-            </p>
+            <p class="text-2xl font-bold text-white">{{ stat.value }}</p>
+            <p class="text-sm text-blue-100/70 mt-0.5">{{ stat.label }}</p>
           </div>
         </div>
       </div>
@@ -136,10 +148,10 @@
             v-for="cat in categories"
             :key="cat.slug"
             :to="`/products?category=${cat.slug}`"
-            class="group bg-white dark:bg-gray-800 rounded-2xl p-5 text-center border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md transition-all duration-200"
+            class="group bg-white dark:bg-gray-800 rounded-2xl p-5 text-center border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
           >
             <div
-              class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-200"
+              class="w-12 h-12 mx-auto mb-3 rounded-xl bg-linear-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-200"
             >
               {{ cat.emoji }}
             </div>
@@ -223,9 +235,14 @@
           <div
             v-for="prop in valueProps"
             :key="prop.title"
-            class="flex flex-col items-start gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700"
+            class="flex flex-col items-start gap-3 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
           >
-            <div class="text-3xl">{{ prop.emoji }}</div>
+            <div
+              class="w-11 h-11 rounded-xl flex items-center justify-center text-xl"
+              :class="prop.badge"
+            >
+              {{ prop.emoji }}
+            </div>
             <div>
               <p class="font-semibold text-gray-900 dark:text-white text-sm">
                 {{ prop.title }}
@@ -236,6 +253,49 @@
                 {{ prop.description }}
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Newsletter CTA ───────────────────────────────────────────────────── -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="relative overflow-hidden rounded-3xl bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 px-6 py-14 sm:px-14 text-center"
+        >
+          <div
+            class="absolute -top-16 -right-16 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+          ></div>
+          <div
+            class="absolute -bottom-16 -left-16 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+          ></div>
+          <div class="relative max-w-xl mx-auto">
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">
+              Get 15% off your first order
+            </h2>
+            <p class="text-blue-100/80 text-sm sm:text-base mb-7">
+              Join the Sharabat list for new drops, restocks, and
+              subscriber-only deals.
+            </p>
+            <form
+              @submit.prevent="subscribeToNewsletter"
+              class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+            >
+              <input
+                v-model="newsletterEmail"
+                type="email"
+                required
+                placeholder="you@example.com"
+                class="flex-1 px-4 py-3 rounded-xl text-sm text-gray-900 placeholder:text-gray-400 bg-white focus:outline-none focus:ring-2 focus:ring-white/60"
+              />
+              <button
+                type="submit"
+                class="px-6 py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-black transition text-sm shrink-0"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -346,9 +406,9 @@ import type { Product } from "~/types";
 import { useCustomToast } from "../../composables/useToast";
 
 useSeoMeta({
-  title: "SocksCommerce — Premium Socks",
+  title: "Sharabat — Premium Socks",
   description:
-    "Discover premium socks for every occasion. Comfort meets style at SocksCommerce.",
+    "Discover premium socks for every occasion. Comfort meets style at Sharabat.",
 });
 
 const patternStyle = {
@@ -367,11 +427,20 @@ const quantity = ref(1);
 const cartStore = useCartStore();
 const { show } = useCustomToast();
 
+const newsletterEmail = ref("");
+
 const stats = [
   { value: "20+", label: "Sock styles" },
   { value: "4.8★", label: "Avg. rating" },
   { value: "6", label: "Categories" },
   { value: "Free", label: "Returns" },
+];
+
+const showcaseTiles = [
+  { emoji: "🧦", bg: "bg-blue-500/20" },
+  { emoji: "👟", bg: "bg-cyan-400/20" },
+  { emoji: "⚡", bg: "bg-indigo-400/20" },
+  { emoji: "✨", bg: "bg-blue-300/20" },
 ];
 
 const categories = [
@@ -389,24 +458,28 @@ const valueProps = [
     title: "Free shipping over $50",
     description:
       "No minimum fuss — orders over $50 ship free anywhere in the country.",
+    badge: "bg-blue-50 dark:bg-blue-900/30",
   },
   {
     emoji: "↩️",
     title: "30-day hassle-free returns",
     description:
       "Changed your mind? Return any unworn pair within 30 days, no questions asked.",
+    badge: "bg-amber-50 dark:bg-amber-900/30",
   },
   {
     emoji: "🌿",
     title: "Sustainable materials",
     description:
       "Our eco-friendly range uses organic and recycled fibres certified by GOTS.",
+    badge: "bg-emerald-50 dark:bg-emerald-900/30",
   },
   {
     emoji: "⭐",
     title: "Comfort guarantee",
     description:
       "If your socks aren't the most comfortable you've worn, we'll make it right.",
+    badge: "bg-violet-50 dark:bg-violet-900/30",
   },
 ];
 
@@ -439,5 +512,12 @@ function confirmAddToCart() {
   );
   selectedProduct.value = null;
   show("Added to cart", { type: "success" });
+}
+
+function subscribeToNewsletter() {
+  show("Subscribed! Check your inbox for your 15% off code.", {
+    type: "success",
+  });
+  newsletterEmail.value = "";
 }
 </script>

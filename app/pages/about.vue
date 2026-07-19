@@ -6,7 +6,7 @@
     >
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-          About SocksCommerce
+          About Sharabat
         </h1>
         <p class="text-lg text-blue-100/90 max-w-2xl mx-auto leading-relaxed">
           We believe the smallest piece of your outfit deserves the most
@@ -30,7 +30,7 @@
               Built from the ground up
             </h2>
             <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-              SocksCommerce started with a simple frustration: most socks are an
+              Sharabat started with a simple frustration: most socks are an
               afterthought — thin, itchy, and built to wear out fast. We set out
               to change that by sourcing premium materials and obsessing over
               fit, durability, and comfort.
@@ -106,9 +106,9 @@
 
 <script setup lang="ts">
 useSeoMeta({
-  title: "About — SocksCommerce",
+  title: "About — Sharabat",
   description:
-    "Learn about SocksCommerce's story, mission, and the values behind every pair of socks we make.",
+    "Learn about Sharabat's story, mission, and the values behind every pair of socks we make.",
 });
 
 const values = [

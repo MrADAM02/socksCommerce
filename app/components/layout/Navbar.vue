@@ -8,14 +8,14 @@
         <div class="shrink-0">
           <NuxtLink to="/" class="flex items-center gap-2.5 group">
             <div
-              class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-sm group-hover:bg-blue-700 transition"
+              class="w-8 h-8 bg-linear-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center text-white font-black text-sm shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all"
             >
-              🧦
+              S
             </div>
             <span
-              class="text-base font-bold tracking-tight text-gray-900 dark:text-white"
+              class="text-base font-extrabold tracking-wide text-gray-900 dark:text-white uppercase"
             >
-              Socks<span class="text-blue-600">Commerce</span>
+              Sharabat
             </span>
           </NuxtLink>
         </div>

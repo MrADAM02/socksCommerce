@@ -149,9 +149,9 @@
 
 <script setup lang="ts">
 useSeoMeta({
-  title: "Contact — SocksCommerce",
+  title: "Contact — Sharabat",
   description:
-    "Get in touch with the SocksCommerce team for order questions, returns, or general inquiries.",
+    "Get in touch with the Sharabat team for order questions, returns, or general inquiries.",
 });
 
 const form = reactive({

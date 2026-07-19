@@ -1,4 +1,4 @@
-# SocksCommerce
+# Sharabat
 
 A modern e-commerce storefront for a sock brand, built with Nuxt 4, Vue 3, and Tailwind CSS. This project demonstrates a full front-end shopping experience — product browsing, filtering, cart management, and a multi-step checkout flow — with a lightweight Nuxt server API backing the product catalog.
 

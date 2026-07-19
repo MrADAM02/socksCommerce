@@ -357,7 +357,7 @@ import { useCustomToast } from "../../../composables/useToast";
 
 const route = useRoute();
 useSeoMeta({
-  title: "Products — SocksCommerce",
+  title: "Products — Sharabat",
   description:
     "Browse our complete collection of premium socks. Filter by size, color, and price.",
 });
